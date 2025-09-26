@@ -41,9 +41,9 @@ share:
 
 **vim /etc/exports.d/shared_directory_name** and edit specifying:
 
-1.  Directories to be shared, Target
-    <img src="nfs_media/Pictures/1000000100000400000003001E602FAB.png" style="width:4.9492in;height:2.5665in" />client
-    & Permissions assigned
+1.  Directories to be shared, Target client & Permissions assigned
+
+<img src="nfs_media/Pictures/1000000100000400000003001E602FAB.png" style="width:4.6244in;height:1.8862in" />
 
 Create directories specified in the previous step:
 
