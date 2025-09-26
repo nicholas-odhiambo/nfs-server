@@ -51,9 +51,18 @@ share:
 
 5\. Add files to be shared:
 
-cp \~/Documents /shared_directory_name -r
+cd ** / shared_directory_name**
 
-comdu
+** **cp \~/Documents /shared_directory_name -r
+
+6\. Check and Set correct Selinux Context
+
+ls -z /shared
+
+Assign the public_contect_t or nfs_t type (commonly used for NFS
+exports)
+
+semanage fcontext -a -t nfs_t “/shared()”
 
 6\. Re-initilaize the nfs services
 
@@ -71,13 +80,13 @@ firewall-cmd –realod
 
 dnf install nfs-utils
 
-2\. Create a mount point for a our shared directory
+2\. Create a mount point for a shared directory
 
-mkdir -pv /mnt/directory_name
+mkdir -pv /mnt/remote_share
 
 3\. Mount the shared_directory using fstab file:
 
-vim /etc/fstab i
+vim /etc/fstab
 
 4\. start the nfs service
 
