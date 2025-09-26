@@ -64,32 +64,55 @@ exports)
 
 semanage fcontext -a -t nfs_t “/shared()”
 
+restorecon -Rv /shared
+
 6\. Re-initilaize the nfs services
 
 -   exportfs -r
+-   exportfs -v
 
-6\. Allow firewall rules:
+7\. Show the mounted directories
 
-firewall-cmd –add-service nfs
+showmount -e
 
-firewall-cmd –realod
+6\. Allow firewall rules, NFS-related services and reload firewall :
+
+firewall-cmd --permanent --add-service=nfs
+
+firewall-cmd –reload
+
+7\. verify the firewall rules are updated:
+
+firewall-cmd –list-all
+
+You should see the following:
 
 **BASIC INSTALLATION SETUP CLIENT SIDE**
 
-1\. Install the Package
+1\. Update computer packages List and Install the nfs package:
 
-dnf install nfs-utils
+-   dnf update -y
+-   dnf install nfs-utils -y
+
+<img src="nfs_media/Pictures/1000000100000AB0000007207D01524C.png" style="width:6.3382in;height:2.8in" />
 
 2\. Create a mount point for a shared directory
 
-mkdir -pv /mnt/remote_share
+-   **mkdir -pv /mnt/remote\_share**
 
-3\. Mount the shared_directory using fstab file:
+<img src="nfs_media/Pictures/1000000100000AB000000720E9A6BBFA.png" style="width:5.8693in;height:2.4555in" />
 
-vim /etc/fstab
+3\. Mount the shared_directory using fstab file: **vim /etc/fstab**
 
-4\. start the nfs service
+<img src="nfs_media/Pictures/1000000100000AB000000720DCA1A22E.png" style="width:6.9252in;height:2.4992in" />
 
-Confirm if the shared_directory is mounted.
+4\. start the nfs service: systemctl start nfs-utils.service
 
-Cd /mnt/directoty_name
+5\. Mount it persistently and confirm if the shared_directory is
+mounted.:
+
+-   mount -av
+
+-   ls /mnt/directoty_name
+
+<img src="nfs_media/Pictures/1000000100000AB000000720B7FA4A8B.png" style="width:6.4272in;height:2.8453in" />
