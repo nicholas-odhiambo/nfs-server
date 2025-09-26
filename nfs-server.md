@@ -41,21 +41,21 @@ share:
 
 **vim /etc/exports.d/shared_directory_name** and edit specifying:
 
-1.  Directories to be shared
-2.  Target client
-3.  Permissions assigned
+1.  Directories to be shared, Target
+    <img src="nfs_media/Pictures/1000000100000400000003001E602FAB.png" style="width:4.9492in;height:2.5665in" />client
+    & Permissions assigned
 
-4\. Create directories specified in the previous step:
+Create directories specified in the previous step:
 
 -   mkdir -pv / shared_directory_name
 
-5\. Add files to be shared:
+Add files to be shared:
 
 cd ** / shared_directory_name**
 
 ** **cp \~/Documents /shared_directory_name -r
 
-6\. Check and Set correct Selinux Context
+Check and Set correct Selinux Context
 
 ls -z /shared
 
@@ -66,26 +66,32 @@ semanage fcontext -a -t nfs_t “/shared()”
 
 restorecon -Rv /shared
 
-6\. Re-initilaize the nfs services
+Re-initilaize the nfs services
 
 -   exportfs -r
 -   exportfs -v
 
-7\. Show the mounted directories
+<img src="nfs_media/Pictures/1000000100000400000003004E65A21D.png" style="width:6.4937in;height:2.6783in" />
 
-showmount -e
+Show the mounted directories: showmount -e
 
-6\. Allow firewall rules, NFS-related services and reload firewall :
+<img src="nfs_media/Pictures/1000000100000400000003000F895E1C.png" style="width:5.6047in;height:2.4063in" />
+
+Allow firewall rules, NFS-related services and reload firewall :
 
 firewall-cmd --permanent --add-service=nfs
 
 firewall-cmd –reload
 
-7\. verify the firewall rules are updated:
+<img src="nfs_media/Pictures/1000000100000400000003006662B01E.png" style="width:5.8591in;height:2.7799in" />
+
+verify the firewall rules are updated:
 
 firewall-cmd –list-all
 
 You should see the following:
+
+<img src="nfs_media/Pictures/100000010000040000000300422B38EB.png" style="width:5.398in;height:3.5083in" />
 
 **BASIC INSTALLATION SETUP CLIENT SIDE**
 
@@ -116,3 +122,5 @@ mounted.:
 -   ls /mnt/directoty_name
 
 <img src="nfs_media/Pictures/1000000100000AB000000720B7FA4A8B.png" style="width:6.4272in;height:2.8453in" />
+
+=== END
